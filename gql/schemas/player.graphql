@@ -1,0 +1,12 @@
+type Player {
+  id: ID
+  name: String
+}
+
+type Query {
+  getPlayers(id: ID!): [Player]
+}
+
+type Mutation {
+  newPlayer(name: String!): Player
+}

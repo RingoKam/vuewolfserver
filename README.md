@@ -1,2 +1,0 @@
-# vuewolfserver
-Created with CodeSandbox

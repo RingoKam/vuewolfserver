@@ -1,0 +1,19 @@
+type Query {
+  getRoom(id: ID): [room]
+}
+
+type room {
+  id: ID
+  name: String
+  players: [Player]
+  isPlaying: Boolean
+}
+
+type Mutation {
+  newRoom(roomName: String!, playerId: ID!): ID,
+  joinRoom(roomId: ID!, playerId: ID!): ID
+}
+
+type Subscription {
+  updateRoom: room
+}

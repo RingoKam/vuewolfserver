@@ -9,19 +9,19 @@ const updateRoom = "UpdateRoom";
 
 module.exports = {
   Query: {
-    getRoom: (root, args, context) => {
-      return get();
+    getRoom: (root, { roomId }, context) => {
+      return get(roomId);
     }
   },
   Mutation: {
     newRoom: (root, { roomName, playerId }, context) => {
       const room = newRoom(roomName, playerId);
-      pubsub.publish(updateRoom, room);
+      pubsub.publish(updateRoom, { updateRoom: room});
       return room.id;
     },
     joinRoom: (root, { roomId, playerId }, context) => {
       const room = joinRoom(roomId, playerId);
-      pubsub.publish(updateRoom, room);
+      pubsub.publish(updateRoom, { updateRoom: room});
       return roomId;
     }
   },

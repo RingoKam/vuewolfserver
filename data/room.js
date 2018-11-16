@@ -1,13 +1,13 @@
 let rooms = [];
 
-async function get() {
+function get(id) {
   if (!rooms) {
     //get from database here
   }
-  return rooms;
+  return !!id ? rooms.filter(r => r.id === parseInt(id)) : rooms;
 }
 
-async function newRoom(roomName, player) {
+function newRoom(roomName, player) {
   get();
   const id = new Date().getTime();
   const newRoom = {
@@ -23,7 +23,7 @@ async function newRoom(roomName, player) {
   return newRoom;
 }
 
-async function joinRoom(roomId, playerId) {
+function joinRoom(roomId, playerId) {
   get();
   roomId = parseInt(roomId);
   const room = rooms.find(room => room.id === roomId);

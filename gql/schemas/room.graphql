@@ -1,5 +1,5 @@
 type Query {
-  getRoom(id: ID): [room]
+  getRoom(roomId: ID): [room]
 }
 
 type room {

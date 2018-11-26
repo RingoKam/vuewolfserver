@@ -6,6 +6,7 @@
     "apollo-server": "2.1.0",
     "graphql": "14.0.2",
     "graphql-tools": "4.0.3",
+    "lodash": "^4.17.11",
     "merge-graphql-schemas": "1.5.7",
     "node-persist": "3.0.1"
   },

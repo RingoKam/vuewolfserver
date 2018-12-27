@@ -34,8 +34,17 @@ function joinRoom(roomId, playerId) {
   return room;
 }
 
+function updateRoom(roomId, updatedRoom) {
+  get();
+  roomId = parseInt(roomId);
+  const i = rooms.findIndex(room => room.id === roomId);
+  rooms[i] = updatedRoom;
+  return updatedRoom;
+}
+
 module.exports = {
   get,
   newRoom,
-  joinRoom
+  joinRoom,
+  updateRoom
 };

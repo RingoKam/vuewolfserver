@@ -94,3 +94,7 @@ easy way: kill the game.
 meh way: wait for player to rejoin (with a timer, when time runs out, kill the game)
 hard way: replace with AI ( need to write AI )
 
+## Debugging
+Nodemon is running on inspect mode, you can inspect and debug code via chrome node inspector. 
+
+

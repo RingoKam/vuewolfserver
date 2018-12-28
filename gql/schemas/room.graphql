@@ -13,11 +13,12 @@ type Mutation {
   newRoom(roomName: String!, player: JoinedPlayer!): ID,
   joinRoom(roomId: ID!, player: JoinedPlayer!): ID,
   removePlayer(roomId: ID!, playerId: ID!): ID,
-  startGame(roomId: ID!): ID
+  readyPlayer(roomId: ID!, playerId: ID!): ID 
 }
 
 type Subscription {
-  updateRoom(roomId: ID, playerId: ID): room
+  updateRoom(roomId: ID, playerId: ID): room,
+  startGame(roomId: ID!): ID
 }
 
 input JoinedPlayer {

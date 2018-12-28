@@ -38,12 +38,14 @@ module.exports = {
         readyPlayer: (root, { roomId, playerId }, context) =>  {
             const targetRoom = get(roomId);
             const targetPlayer = targetRoom.players.find(player => player.id);
-            targetPlayer.ready = true;
+            targetPlayer.isReady = true;
             //check if all 7 player is ready, start game if so. 
-            if(targetRoom.player.filter(player => player.ready).length == 7) {
+            if(targetRoom.players.filter(player => player.ready).length == 7) {
+                targetRoom.isPlaying = true;
                 pubsub.publish(event.startGame, { id: roomId });
             }
-            return updateRoom(targetRoom);
+            const updatedRoom = updateRoom(targetRoom);
+            return roomId;
         }
     },
     Subscription: {
@@ -60,7 +62,7 @@ module.exports = {
                     }
                     //provided payload and new event are pushed out
                     else {
-                        const isSameRoom = payloadRoomId === requestedRoomId;
+                        const isSameRoom = payloadRoomId.toString() === requestedRoomId.toString();
                         return isSameRoom;
                     }
                 }

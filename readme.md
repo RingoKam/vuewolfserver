@@ -29,27 +29,13 @@ Each session should have its unique ID so its state can be easily located in sto
 
 Once a room has gather min of 7 players, game can start!
 
-> Room List
-```typescript
-{
-  data: [{
-    id: "157848",
-    name: "Ringo favorite lobby",
-    playerCount: 1
-  }, ...]
-}
-```
-
-> Room
-```typescript
-{
-  data: [{
-    playerId: "1234567",
-    userName: "Ringo",
-    isReady: false,
-  }, ...]
-}
-```
+#### Common Actions
+1. Create Player
+2. Create Room 
+3. Join Room
+4. Update Room (when user join)
+5. Update Room (when user ready)
+6. Remove Player
 
 ### Game State
 Game State are separated by day/night cycle.

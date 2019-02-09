@@ -1,33 +1,33 @@
-let rooms = [];
+let rooms = new Map();
 
 function get(id) {
-  if (!rooms) {
+  if (!rooms.values) {
     //get from database here
   }
-  return !!id ? rooms.filter(r => r.id === parseInt(id)) : rooms;
+  return !!id ? rooms.get(id) : rooms.values();
 }
 
 function newRoom(roomName, player) {
   get();
   const id = new Date().getTime();
+  const playerMap = new Map().set(player.id, player);
   const newRoom = {
     id,
     name: roomName,
-    players: [player],
+    players: playerMap,
     isPlaying: false
   };
-  rooms.unshift(newRoom);
+  rooms.set(id, newRoom);
   setTimeout(() => {
     //update database
   }, 0);
   return newRoom;
 }
 
-function joinRoom(roomId, playerId) {
+function joinRoom(roomId, player) {
   get();
-  roomId = parseInt(roomId);
-  const room = rooms.find(room => room.id === roomId);
-  room.players.push(playerId);
+  const room = rooms.get(roomId);
+  room.players.set(player.id, player);
   setTimeout(() => {
     //update database here
   }, 0);
@@ -36,10 +36,8 @@ function joinRoom(roomId, playerId) {
 
 function updateRoom(roomId, updatedRoom) {
   get();
-  roomId = parseInt(roomId);
-  const i = rooms.findIndex(room => room.id === roomId);
-  rooms[i] = updatedRoom;
-  return updatedRoom;
+  rooms.set(roomId, updatedRoom);
+  return rooms.get(roomId);
 }
 
 module.exports = {

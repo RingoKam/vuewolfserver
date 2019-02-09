@@ -17,7 +17,6 @@ module.exports = {
     Query: {
         getRoom: (root, { roomId }, context) => {
             const r = get(roomId);
-            const p = player.get();
             return r;
         }
     },
@@ -33,17 +32,18 @@ module.exports = {
             return roomId;
         },
         removePlayer: (root, {roomId, playerId}, context) => {
+            //TODO: user need to be removed  
             return playerId;
         },
         readyPlayer: (root, { roomId, playerId }, context) =>  {
             const targetRoom = get(roomId);
-            const targetPlayer = targetRoom.players.find(player => player.id);
+            targetRoom.players.get(playerId);
             targetPlayer.ready = true;
             //check if all 7 player is ready, start game if so. 
-            if(targetRoom.player.filter(player => player.ready).length == 7) {
+            if(targetRoom.players.values().filter(player => player.ready).length == 7) {
                 pubsub.publish(event.startGame, { id: roomId });
             }
-            return updateRoom(targetRoom);
+            return updateRoom(roomId, targetRoom);
         }
     },
     Subscription: {

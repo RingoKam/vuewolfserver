@@ -4,7 +4,11 @@ function get(id) {
   if (!rooms.values) {
     //get from database here
   }
+<<<<<<< HEAD
   return !!id ? rooms.get(id) : rooms.values();
+=======
+  return !!id ? rooms.filter(r => r.id === parseInt(id))[0] : rooms;
+>>>>>>> d504f5ee3354a8848a2ff2d56061c791c0b63efd
 }
 
 function newRoom(roomName, player) {

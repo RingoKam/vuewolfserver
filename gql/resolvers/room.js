@@ -60,7 +60,7 @@ module.exports = {
                     }
                     //provided payload and new event are pushed out
                     else {
-                        const isSameRoom = payloadRoomId === requestedRoomId;
+                        const isSameRoom = payloadRoomId.toString() === requestedRoomId.toString();
                         return isSameRoom;
                     }
                 }
